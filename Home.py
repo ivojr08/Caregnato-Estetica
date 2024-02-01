@@ -5,7 +5,7 @@ import os
 import pandas as pd
 from pandas.compat._optional import import_optional_dependency
 from reportlab.lib.units import inch
-from reportlab.lib.pagesizes import letter
+from reportlab.lib.pagesizes import letter, A4
 from reportlab.platypus import SimpleDocTemplate, Table, Paragraph, Spacer, Image
 from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
@@ -35,14 +35,14 @@ def criar_chave_unico(prefixo):
 
 def criar_orcamento_pdf(cliente_info, orcamento_itens, desconto, total_itens, total_final):
     pdf_path = f"Orçamento-{cliente_info['cliente']}.pdf"
-    pdf = SimpleDocTemplate(pdf_path, pagesize=letter)
+    pdf = SimpleDocTemplate(pdf_path, pagesize=A4)
 
     pdf_elements = []
 
     # Adicionar logo como cabeçalho
     logo_path = './logo_orcamento.png'
     logo_width = 250
-    logo_height = 100
+    logo_height = 50
 
     # Adicionar imagem ao PDF centralizada
     logo = Image(logo_path, width=logo_width, height=logo_height)
@@ -134,7 +134,11 @@ def criar_orcamento_pdf(cliente_info, orcamento_itens, desconto, total_itens, to
     # Adicionar subtotal, desconto e total ao PDF
     pdf_elements.append(Paragraph(f"Subtotal Produtos: R${subtotal_produtos:.2f}", getSampleStyleSheet()['BodyText']))
     pdf_elements.append(Paragraph(f"Subtotal Serviços: R${subtotal_servicos:.2f}", getSampleStyleSheet()['BodyText']))
-    pdf_elements.append(Paragraph(f"Desconto: R${desconto:.2f}", getSampleStyleSheet()['BodyText']))
+
+    # Adicionar desconto apenas se for maior que zero
+    if desconto > 0:
+        pdf_elements.append(Paragraph(f"Desconto: R${desconto:.2f}", getSampleStyleSheet()['BodyText']))
+
     pdf_elements.append(Paragraph(f"Total: R${total_final:.2f}", getSampleStyleSheet()['BodyText']))
     pdf_elements.append(Spacer(1, 20))  # Adiciona espaço em branco
 
