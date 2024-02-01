@@ -3,7 +3,6 @@ from fpdf import FPDF
 import base64
 import os
 import pandas as pd
-from pandas.compat._optional import import_optional_dependency
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Table, Paragraph, Spacer, Image
@@ -169,9 +168,9 @@ def criar_orcamento_excel(df_cliente_info, orcamento_itens):
 
     # Salvar para Excel
     excel_path = 'orcamento.xlsx'
-    with pd.ExcelWriter(excel_path, engine='xlsxwriter') as writer:
-        df_orcamento.to_excel(writer, sheet_name='Orçamento', index=False)
-        df_cliente_info_final.to_excel(writer, sheet_name='Cliente', index=False)
+    # with pd.ExcelWriter(excel_path, engine='xlsxwriter') as writer:
+    #     df_orcamento.to_excel(writer, sheet_name='Orçamento', index=False)
+    #     df_cliente_info_final.to_excel(writer, sheet_name='Cliente', index=False)
 
     return excel_path, total_final
 
