@@ -169,9 +169,9 @@ def criar_orcamento_excel(df_cliente_info, orcamento_itens):
 
     # Salvar para Excel
     excel_path = 'orcamento.xlsx'
-    with pd.ExcelWriter(excel_path, engine='xlsxwriter') as writer:
-        df_orcamento.to_excel(writer, sheet_name='Orçamento', index=False)
-        df_cliente_info_final.to_excel(writer, sheet_name='Cliente', index=False)
+    # with pd.ExcelWriter(excel_path, engine='xlsxwriter') as writer:
+    #     df_orcamento.to_excel(writer, sheet_name='Orçamento', index=False)
+    #     df_cliente_info_final.to_excel(writer, sheet_name='Cliente', index=False)
 
     return excel_path, total_final
 
