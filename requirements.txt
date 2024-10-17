@@ -4,3 +4,4 @@ pandas==1.5.3
 reportlab
 numpy==1.23.5
 fpdf
+altair==4.0.0
