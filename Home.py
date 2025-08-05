@@ -1,7 +1,9 @@
+import os
+os.environ["WATCHDOG_OBSERVER"] = "polling"
+
 import streamlit as st
 from fpdf import FPDF
 import base64
-import os
 import pandas as pd
 from pandas.compat._optional import import_optional_dependency
 from reportlab.lib.units import inch
